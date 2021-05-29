@@ -8,6 +8,7 @@ import Modal from "../../common/modal";
 
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { LOGIN_MODAL_TABS } from "../../common/js/constants";
 
 class Home extends React.Component {
   constructor() {
@@ -45,8 +46,8 @@ class Home extends React.Component {
         ></Header>
         <Modal isOpen={isLoginModalOpen}>
           <Tabs value={loginTabValue} onChange={this.tabChangeHandler}>
-            {["Login", "Signup"].map(tab => (
-              <Tab key={tab} label={tab} />
+            {LOGIN_MODAL_TABS.map(tab => (
+              <Tab key={tab.name} label={tab.name} />
             ))}
           </Tabs>
         </Modal>
