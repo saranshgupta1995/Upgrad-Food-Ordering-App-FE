@@ -10,8 +10,8 @@ class Header extends React.Component {
         <div>
           <FastfoodIcon />
         </div>
-        {middle && <div></div>}
-        {end && <div></div>}
+        {middle}
+        {end}
       </header>
     );
   }

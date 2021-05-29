@@ -1,0 +1,29 @@
+.search-box {
+  position: relative;
+}
+.search-box svg {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: white;
+}
+
+.search-box input {
+  color: white;
+  padding-left: 50px;
+  border-radius: 4px;
+  width: 300px;
+  padding: 10px 0;
+  margin-right: 20px;
+  padding-left: 40px;
+}
+
+.search-box .MuiInput-underline:after {
+  border-color: white;
+}
+
+@media only screen and (max-width: 750px) {
+  .search-box input {
+    width: 100%;
+  }
+}
