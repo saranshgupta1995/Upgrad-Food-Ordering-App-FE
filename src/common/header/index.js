@@ -1,4 +1,5 @@
 import React from "react";
+import FastfoodIcon from "@material-ui/icons/Fastfood";
 import "./style.css";
 
 class Header extends React.Component {
@@ -6,7 +7,9 @@ class Header extends React.Component {
     const { middle, end } = this.props;
     return (
       <header className="header">
-        <div></div>
+        <div>
+          <FastfoodIcon />
+        </div>
         {middle && <div></div>}
         {end && <div></div>}
       </header>
