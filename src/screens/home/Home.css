@@ -21,6 +21,16 @@
   border-color: white;
 }
 
+.search-box .login-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-box .login-btn svg {
+  margin-right: 10px;
+}
+
 @media only screen and (max-width: 750px) {
   .search-box input {
     width: 100%;

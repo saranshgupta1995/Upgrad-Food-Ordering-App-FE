@@ -2,7 +2,8 @@ import "./Home.css";
 import React from "react";
 import Header from "../../common/header";
 import SearchIcon from "@material-ui/icons/Search";
-import { Input } from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { Input, Button } from "@material-ui/core";
 
 class Home extends React.Component {
   render() {
@@ -14,7 +15,16 @@ class Home extends React.Component {
             <SearchIcon />
           </div>
         }
-        end={<button class="login-btn">Login</button>}
+        end={
+          <Button
+            startIcon={<AccountCircleIcon></AccountCircleIcon>}
+            className="login-btn"
+            variant="contained"
+            color="default"
+          >
+            Login
+          </Button>
+        }
       ></Header>
     );
   }
