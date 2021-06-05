@@ -31,6 +31,20 @@
   margin-right: 10px;
 }
 
+.user-auth-flows {
+  padding: 15px;
+  width: 400px;
+}
+
+.user-auth-flows form {
+  padding: 10px 30px;
+}
+
+.user-auth-flows .MuiFormControl-root {
+  width: 100%;
+  margin-top: 15px;
+}
+
 @media only screen and (max-width: 750px) {
   .search-box input {
     width: 100%;
