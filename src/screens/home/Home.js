@@ -12,6 +12,7 @@ import { LOGIN_MODAL_TABS } from "../../common/js/constants";
 
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 
 const TabContainer = function(props) {
@@ -29,9 +30,22 @@ class Home extends React.Component {
       loginTabValue: 0,
       isLoginModalOpen: true,
       loginFormData: {},
-      signupFormData: {}
+      signupFormData: {},
+      showErrors: false
     };
   }
+
+  onAuthFormSubmit = form => {
+    const stateField = `${form}FormData`;
+
+    const formFieldsData = this.state[stateField];
+
+    this.setState({
+      showErrors: true
+    });
+
+    console.log(formFieldsData);
+  };
 
   setFieldData = (form, name, value) => {
     this.setState(prevState => {
@@ -40,29 +54,37 @@ class Home extends React.Component {
         [stateField]: {
           ...prevState[stateField],
           [`${form}-${name}`]: value
-        }
+        },
+        showErrors: false
       };
     });
   };
 
   field = (form, data) => {
+    const { showErrors } = this.state;
     const elements = [];
+    const fieldValue = (this.state[`${form}FormData`] || {})[
+      `${form}-${data.id}`
+    ];
     switch (data.type) {
       case "text":
       case "password":
         elements.push(
-          <FormControl key={`${form}-${data.id}`} required={data.required}>
+          <FormControl key={`${form}-${data.id}`}>
             <InputLabel htmlFor={data.id}>{data.label}</InputLabel>
             <Input
               onChange={e =>
                 this.setFieldData(form, data.id, e.nativeEvent.target.value)
               }
-              value={
-                (this.state[`${form}FormData`] || {})[`${form}-${data.id}`]
-              }
+              value={fieldValue}
               id={data.id}
               type={data.type}
             />
+            {showErrors && data.required && !fieldValue && (
+              <FormHelperText error={true} id="my-helper-text">
+                required
+              </FormHelperText>
+            )}
           </FormControl>
         );
         break;
@@ -112,11 +134,15 @@ class Home extends React.Component {
             <form
               onSubmit={e => {
                 e.preventDefault();
+                this.onAuthFormSubmit(activeLoginTab.name);
               }}
             >
               {activeLoginTab.fields.map(data =>
                 this.field(activeLoginTab.name, data)
               )}
+              <Button type="submit" variant="contained" color="primary">
+                Login
+              </Button>
             </form>
           </TabContainer>
         </Modal>

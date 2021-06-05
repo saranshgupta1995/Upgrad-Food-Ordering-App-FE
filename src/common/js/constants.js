@@ -5,12 +5,14 @@ export const LOGIN_MODAL_TABS = [
       {
         label: "Contact No *",
         type: "text",
-        id: "contact"
+        id: "contact",
+        required: true
       },
       {
         label: "Password",
         type: "password",
-        id: "password"
+        id: "password",
+        required: true
       }
     ],
     buttonText: "Login"
