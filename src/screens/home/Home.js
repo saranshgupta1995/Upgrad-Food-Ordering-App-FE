@@ -49,6 +49,7 @@ class Home extends React.Component {
     const elements = [];
     switch (data.type) {
       case "text":
+      case "password":
         elements.push(
           <FormControl key={`${form}-${data.id}`} required={data.required}>
             <InputLabel htmlFor={data.id}>{data.label}</InputLabel>
@@ -60,7 +61,7 @@ class Home extends React.Component {
                 (this.state[`${form}FormData`] || {})[`${form}-${data.id}`]
               }
               id={data.id}
-              type="text"
+              type={data.type}
             />
           </FormControl>
         );
