@@ -71,7 +71,9 @@ class Home extends React.Component {
       case "password":
         elements.push(
           <FormControl key={`${form}-${data.id}`}>
-            <InputLabel htmlFor={data.id}>{data.label}</InputLabel>
+            <InputLabel htmlFor={data.id}>
+              {data.label} {data.required && "*"}
+            </InputLabel>
             <Input
               onChange={e =>
                 this.setFieldData(form, data.id, e.nativeEvent.target.value)
@@ -81,7 +83,7 @@ class Home extends React.Component {
               type={data.type}
             />
             {showErrors && data.required && !fieldValue && (
-              <FormHelperText error={true} id="my-helper-text">
+              <FormHelperText error={true}>
                 required
               </FormHelperText>
             )}

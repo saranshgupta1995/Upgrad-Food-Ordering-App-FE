@@ -3,7 +3,7 @@ export const LOGIN_MODAL_TABS = [
     name: "Login",
     fields: [
       {
-        label: "Contact No *",
+        label: "Contact No",
         type: "text",
         id: "contact",
         required: true
@@ -39,7 +39,7 @@ export const LOGIN_MODAL_TABS = [
         required: true
       },
       {
-        label: "Contact No *",
+        label: "Contact No",
         type: "text",
         id: "contact"
       },
