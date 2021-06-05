@@ -39,12 +39,39 @@ class Home extends React.Component {
       return {
         [stateField]: {
           ...prevState[stateField],
-          [name]: value
+          [`${form}-${name}`]: value
         }
       };
     });
   };
-  
+
+  field = (form, data) => {
+    const elements = [];
+    switch (data.type) {
+      case "text":
+        elements.push(
+          <FormControl key={`${form}-${data.id}`} required={data.required}>
+            <InputLabel htmlFor={data.id}>{data.label}</InputLabel>
+            <Input
+              onChange={e =>
+                this.setFieldData(form, data.id, e.nativeEvent.target.value)
+              }
+              value={
+                (this.state[`${form}FormData`] || {})[`${form}-${data.id}`]
+              }
+              id={data.id}
+              type="text"
+            />
+          </FormControl>
+        );
+        break;
+
+      default:
+        break;
+    }
+    return elements;
+  };
+
   tabChangeHandler = (event, loginTabValue) => {
     this.setState({ loginTabValue });
   };
@@ -75,21 +102,21 @@ class Home extends React.Component {
           }
         ></Header>
         <Modal isOpen={isLoginModalOpen} className="user-auth-flows">
-          <Tabs value={loginTabValue} onChange={this.tabChangeHandler}>
+          <Tabs centered value={loginTabValue} onChange={this.tabChangeHandler}>
             {LOGIN_MODAL_TABS.map(tab => (
               <Tab key={tab.name} label={tab.name} />
             ))}
           </Tabs>
           <TabContainer>
-            <FormControl required>
-              <InputLabel htmlFor="username">Username</InputLabel>
-              <Input id="username" type="text" />
-            </FormControl>
-
-            <FormControl required>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input id="password" type="password" />
-            </FormControl>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+              }}
+            >
+              {activeLoginTab.fields.map(data =>
+                this.field(activeLoginTab.name, data)
+              )}
+            </form>
           </TabContainer>
         </Modal>
       </>
