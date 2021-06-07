@@ -52,3 +52,43 @@ export const LOGIN_MODAL_TABS = [
     buttonText: "Login"
   }
 ];
+
+export const MOCKS = {
+  allRestaurants: [
+    {
+      name: "Pikachu",
+      img: "hjghvfcbdv",
+      tags: ["abc", "bcd", "cde", "efg"],
+      cost: 1000,
+      rating: 2.8
+    },
+    {
+      name: "Pikachu2",
+      img: "hjghvfcbdv",
+      tags: ["abc", "bcd", "cde", "efg"],
+      cost: 1000,
+      rating: 2.8
+    },
+    {
+      name: "Pikachu3",
+      img: "hjghvfcbdv",
+      tags: ["abc", "bcd", "cde", "efg"],
+      cost: 1000,
+      rating: 2.8
+    },
+    {
+      name: "Pikachu4",
+      img: "hjghvfcbdv",
+      tags: ["abc", "bcd", "cde", "efg"],
+      cost: 1000,
+      rating: 2.8
+    },
+    {
+      name: "Pikachu pika pika",
+      img: "hjghvfcbdv",
+      tags: ["abc", "bcd", "cde", "efg"],
+      cost: 1000,
+      rating: 2.8
+    },
+  ]
+};
