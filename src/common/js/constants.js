@@ -60,35 +60,35 @@ export const MOCKS = {
       img: "hjghvfcbdv",
       tags: ["abc", "bcd", "cde", "efg"],
       cost: 1000,
-      rating: 2.8
+      rating: 2.9
     },
     {
       name: "Pikachu2",
       img: "hjghvfcbdv",
       tags: ["abc", "bcd", "cde", "efg"],
       cost: 1000,
-      rating: 2.8
+      rating: 2.4
     },
     {
-      name: "Pikachu3",
+      name: "Raichu",
       img: "hjghvfcbdv",
       tags: ["abc", "bcd", "cde", "efg"],
       cost: 1000,
-      rating: 2.8
+      rating: 2.7
     },
     {
-      name: "Pikachu4",
+      name: "Pichu",
       img: "hjghvfcbdv",
       tags: ["abc", "bcd", "cde", "efg"],
       cost: 1000,
-      rating: 2.8
+      rating: 4.1
     },
     {
       name: "Pikachu pika pika",
       img: "hjghvfcbdv",
       tags: ["abc", "bcd", "cde", "efg"],
       cost: 1000,
-      rating: 2.8
+      rating: 2.1
     },
   ]
 };

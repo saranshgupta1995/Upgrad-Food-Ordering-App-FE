@@ -3,7 +3,15 @@ import React from "react";
 import Header from "../../common/header";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Input, Button } from "@material-ui/core";
+import {
+  Input,
+  Button,
+  Card,
+  CardMedia,
+  CardActions,
+  CardActionArea,
+  CardContent
+} from "@material-ui/core";
 import Modal from "../../common/modal";
 
 import Tabs from "@material-ui/core/Tabs";
@@ -157,9 +165,59 @@ class Home extends React.Component {
         )}
         <div className="restaurant-cards">
           {MOCKS.allRestaurants.map(restaurant => (
-            <div key={restaurant.name} className="restaurant-card">
-              {restaurant.name}
+            <div>
+              <Card key={restaurant.name} className="restaurant-card">
+                <CardActionArea>
+                  <CardMedia
+                    style={{ height: "160px" }}
+                    image="https://via.placeholder.com/728x100.png"
+                    title="Contemplative Reptile"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {restaurant.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {restaurant.tags.join(", ")}
+                    </Typography>
+                    <br />
+                    <Typography
+                      variant="div"
+                      color="textSecondary"
+                      component="p"
+                      className="card-footer"
+                    >
+                      <span className="rating">{restaurant.rating}</span>
+                      <span className="price">{restaurant.cost} for two</span>
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
             </div>
+            // <div key={restaurant.name} className="restaurant-card">
+            //   <div>
+            //     <div className="image">
+            //       <img
+            //         src="https://via.placeholder.com/728x100.png"
+            //         alt={restaurant.name}
+            //       />
+            //     </div>
+            //     <div className="details">
+            //       <p className="name">{restaurant.name}</p>
+            //       <br />
+            //       <p>{restaurant.tags.join(", ")}</p>
+            //       <br />
+            //       <div className="card-footer">
+            //         <div className="rating">{restaurant.rating}</div>
+            //         <div className="price">{restaurant.cost}</div>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>
           ))}
         </div>
       </>
