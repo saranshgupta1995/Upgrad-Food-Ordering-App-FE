@@ -45,6 +45,10 @@
   margin-top: 15px;
 }
 
+.restaurant-cards .MuiCardContent-root {
+  font-weight: 600;
+}
+
 .restaurant-cards > div {
   flex: 0 0 25%;
   padding: 10px 20px;
@@ -53,6 +57,8 @@
 
 .restaurant-cards .rating {
   background: #eacc5c;
+  padding: 5px 10px;
+  color: white;
 }
 
 .restaurant-cards .card-footer {

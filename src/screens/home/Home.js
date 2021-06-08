@@ -177,21 +177,23 @@ class Home extends React.Component {
                     <Typography gutterBottom variant="h5" component="h2">
                       {restaurant.name}
                     </Typography>
+                    <br/>
                     <Typography
                       variant="body2"
-                      color="textSecondary"
                       component="p"
                     >
                       {restaurant.tags.join(", ")}
                     </Typography>
                     <br />
+                    <br />
                     <Typography
                       variant="div"
-                      color="textSecondary"
                       component="p"
                       className="card-footer"
                     >
-                      <span className="rating">{restaurant.rating}</span>
+                      <span className="rating">
+                        {restaurant.rating.average} ({restaurant.rating.count})
+                      </span>
                       <span className="price">{restaurant.cost} for two</span>
                     </Typography>
                   </CardContent>
