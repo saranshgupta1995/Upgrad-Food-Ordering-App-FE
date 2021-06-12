@@ -3,12 +3,20 @@ import React from "react";
 import Header from "../../common/header";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Input, Button } from "@material-ui/core";
+import {
+  Input,
+  Button,
+  Card,
+  CardMedia,
+  CardActions,
+  CardActionArea,
+  CardContent
+} from "@material-ui/core";
 import Modal from "../../common/modal";
 
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import { LOGIN_MODAL_TABS } from "../../common/js/constants";
+import { LOGIN_MODAL_TABS, MOCKS } from "../../common/js/constants";
 
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
@@ -28,7 +36,7 @@ class Home extends React.Component {
     super();
     this.state = {
       loginTabValue: 0,
-      isLoginModalOpen: true,
+      isLoginModalOpen: false,
       loginFormData: {},
       signupFormData: {},
       showErrors: false
@@ -83,9 +91,7 @@ class Home extends React.Component {
               type={data.type}
             />
             {showErrors && data.required && !fieldValue && (
-              <FormHelperText error={true}>
-                required
-              </FormHelperText>
+              <FormHelperText error={true}>required</FormHelperText>
             )}
           </FormControl>
         );
@@ -121,33 +127,101 @@ class Home extends React.Component {
               className="login-btn"
               variant="contained"
               color="default"
+              onClick={() => {
+                this.setState({ isLoginModalOpen: true });
+              }}
             >
               Login
             </Button>
           }
         ></Header>
-        <Modal isOpen={isLoginModalOpen} className="user-auth-flows">
-          <Tabs centered value={loginTabValue} onChange={this.tabChangeHandler}>
-            {LOGIN_MODAL_TABS.map(tab => (
-              <Tab key={tab.name} label={tab.name} />
-            ))}
-          </Tabs>
-          <TabContainer>
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-                this.onAuthFormSubmit(activeLoginTab.name);
-              }}
+        {isLoginModalOpen && (
+          <Modal isOpen className="user-auth-flows">
+            <Tabs
+              centered
+              value={loginTabValue}
+              onChange={this.tabChangeHandler}
             >
-              {activeLoginTab.fields.map(data =>
-                this.field(activeLoginTab.name, data)
-              )}
-              <Button type="submit" variant="contained" color="primary">
-                Login
-              </Button>
-            </form>
-          </TabContainer>
-        </Modal>
+              {LOGIN_MODAL_TABS.map(tab => (
+                <Tab key={tab.name} label={tab.name} />
+              ))}
+            </Tabs>
+            <TabContainer>
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  this.onAuthFormSubmit(activeLoginTab.name);
+                }}
+              >
+                {activeLoginTab.fields.map(data =>
+                  this.field(activeLoginTab.name, data)
+                )}
+                <Button type="submit" variant="contained" color="primary">
+                  Login
+                </Button>
+              </form>
+            </TabContainer>
+          </Modal>
+        )}
+        <div className="restaurant-cards">
+          {MOCKS.allRestaurants.map(restaurant => (
+            <div>
+              <Card key={restaurant.name} className="restaurant-card">
+                <CardActionArea>
+                  <CardMedia
+                    style={{ height: "160px" }}
+                    image="https://via.placeholder.com/728x100.png"
+                    title="Contemplative Reptile"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {restaurant.name}
+                    </Typography>
+                    <br/>
+                    <Typography
+                      variant="body2"
+                      component="p"
+                    >
+                      {restaurant.tags.join(", ")}
+                    </Typography>
+                    <br />
+                    <br />
+                    <Typography
+                      variant="div"
+                      component="p"
+                      className="card-footer"
+                    >
+                      <span className="rating">
+                        {restaurant.rating.average} ({restaurant.rating.count})
+                      </span>
+                      <span className="price">{restaurant.cost} for two</span>
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </div>
+            // <div key={restaurant.name} className="restaurant-card">
+            //   <div>
+            //     <div className="image">
+            //       <img
+            //         src="https://via.placeholder.com/728x100.png"
+            //         alt={restaurant.name}
+            //       />
+            //     </div>
+            //     <div className="details">
+            //       <p className="name">{restaurant.name}</p>
+            //       <br />
+            //       <p>{restaurant.tags.join(", ")}</p>
+            //       <br />
+            //       <div className="card-footer">
+            //         <div className="rating">{restaurant.rating}</div>
+            //         <div className="price">{restaurant.cost}</div>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>
+          ))}
+        </div>
       </>
     );
   }

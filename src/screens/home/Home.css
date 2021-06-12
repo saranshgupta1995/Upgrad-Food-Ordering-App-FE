@@ -45,6 +45,33 @@
   margin-top: 15px;
 }
 
+.restaurant-cards .MuiCardContent-root {
+  font-weight: 600;
+}
+
+.restaurant-cards > div {
+  flex: 0 0 25%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.restaurant-cards .rating {
+  background: #eacc5c;
+  padding: 5px 10px;
+  color: white;
+}
+
+.restaurant-cards .card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.restaurant-cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
 @media only screen and (max-width: 750px) {
   .search-box input {
     width: 100%;
