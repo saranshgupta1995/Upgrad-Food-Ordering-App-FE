@@ -11,6 +11,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/restaurant/:id">
+            <div>Pikachu</div>
+          </Route>
           <Route path="/">
             <Home></Home>
           </Route>

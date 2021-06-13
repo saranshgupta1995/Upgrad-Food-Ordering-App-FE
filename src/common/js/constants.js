@@ -105,5 +105,8 @@ export const MOCKS = {
         average: 2.7
       }
     }
-  ]
+  ].map(x => {
+    x.id = x.name;
+    return x;
+  })
 };

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Home.css";
 import React from "react";
 import Header from "../../common/header";
@@ -8,7 +9,6 @@ import {
   Button,
   Card,
   CardMedia,
-  CardActions,
   CardActionArea,
   CardContent
 } from "@material-ui/core";
@@ -166,39 +166,39 @@ class Home extends React.Component {
         <div className="restaurant-cards">
           {MOCKS.allRestaurants.map(restaurant => (
             <div>
-              <Card key={restaurant.name} className="restaurant-card">
-                <CardActionArea>
-                  <CardMedia
-                    style={{ height: "160px" }}
-                    image="https://via.placeholder.com/728x100.png"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {restaurant.name}
-                    </Typography>
-                    <br/>
-                    <Typography
-                      variant="body2"
-                      component="p"
-                    >
-                      {restaurant.tags.join(", ")}
-                    </Typography>
-                    <br />
-                    <br />
-                    <Typography
-                      variant="div"
-                      component="p"
-                      className="card-footer"
-                    >
-                      <span className="rating">
-                        {restaurant.rating.average} ({restaurant.rating.count})
-                      </span>
-                      <span className="price">{restaurant.cost} for two</span>
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <Link to={`/restaurant/${restaurant.id}`}>
+                <Card key={restaurant.name} className="restaurant-card">
+                  <CardActionArea>
+                    <CardMedia
+                      style={{ height: "160px" }}
+                      image="https://via.placeholder.com/728x100.png"
+                      title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {restaurant.name}
+                      </Typography>
+                      <br />
+                      <Typography variant="body2" component="p">
+                        {restaurant.tags.join(", ")}
+                      </Typography>
+                      <br />
+                      <br />
+                      <Typography
+                        variant="div"
+                        component="p"
+                        className="card-footer"
+                      >
+                        <span className="rating">
+                          {restaurant.rating.average} ({restaurant.rating.count}
+                          )
+                        </span>
+                        <span className="price">{restaurant.cost} for two</span>
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Link>
             </div>
             // <div key={restaurant.name} className="restaurant-card">
             //   <div>
