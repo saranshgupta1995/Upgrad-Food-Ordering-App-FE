@@ -17,36 +17,15 @@ import { MOCKS } from "../../common/js/constants";
 import Typography from "@material-ui/core/Typography";
 
 class Home extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showAuth: false
-    };
-  }
-
   render() {
     return (
       <>
         <Header
-          showAuth={this.state.showAuth}
           middle={
             <div className="search-box">
               <Input type="text" placeholder="Search by Restaurant Name" />
               <SearchIcon />
             </div>
-          }
-          end={
-            <Button
-              startIcon={<AccountCircleIcon></AccountCircleIcon>}
-              className="login-btn"
-              variant="contained"
-              color="default"
-              onClick={() => {
-                this.setState({ showAuth: true });
-              }}
-            >
-              Login
-            </Button>
           }
         ></Header>
         <div className="restaurant-cards">

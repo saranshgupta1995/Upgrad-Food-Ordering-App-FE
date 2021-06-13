@@ -1,7 +1,5 @@
-import {
-  Input,
-  Button,
-} from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { Input, Button } from "@material-ui/core";
 import React from "react";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import "./style.css";
@@ -31,6 +29,7 @@ class Header extends React.Component {
       loginTabValue: 0,
       isLoginModalOpen: false,
       loginFormData: {},
+      showAuth: false,
       signupFormData: {},
       showErrors: false
     };
@@ -101,8 +100,8 @@ class Header extends React.Component {
   };
 
   render() {
-    const { middle, end, showAuth } = this.props;
-    const { loginTabValue } = this.state;
+    const { middle } = this.props;
+    const { loginTabValue, showAuth } = this.state;
 
     const activeLoginTab = LOGIN_MODAL_TABS[loginTabValue];
 
@@ -140,7 +139,17 @@ class Header extends React.Component {
           <FastfoodIcon />
         </div>
         {middle}
-        {end}
+        <Button
+          startIcon={<AccountCircleIcon></AccountCircleIcon>}
+          className="login-btn"
+          variant="contained"
+          color="default"
+          onClick={() => {
+            this.setState({ showAuth: true });
+          }}
+        >
+          Login
+        </Button>
       </header>
     );
   }
