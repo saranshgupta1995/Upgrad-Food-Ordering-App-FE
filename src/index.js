@@ -5,6 +5,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./screens/home/Home";
+import Details from "./screens/details/Details";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/restaurant/:id">
-            <div>Pikachu</div>
+            <Details></Details>
           </Route>
           <Route path="/">
             <Home></Home>

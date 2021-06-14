@@ -1,0 +1,29 @@
+.restaurant-details .restaurant {
+  padding: 20px;
+  background: lightgray;
+  display: flex;
+}
+
+.restaurant-details .restaurant .image {
+  width: 200px;
+  margin-right: 20px;
+}
+
+.restaurant-details .restaurant .details {
+  padding: 10px;
+  line-height: 1.8em;
+  flex-grow: 1;
+}
+
+.restaurant-details .restaurant .details .rating-cost{
+  display: flex;
+}
+
+.restaurant-details .restaurant .details .rating-cost >div{
+  flex: 0 0 50%;
+}
+
+.restaurant-details .restaurant h2 {
+  font-weight: 500;
+  font-size: 24px;
+}
