@@ -20,14 +20,14 @@ const RestaurantBase = ({ data }) => {
         <div className="rating-cost">
           <div>
             <p>
-              <i className="fa fa-star"></i>
+              <i className="fa fa-star icon"></i>
               {data.rating.average}
             </p>
             <p>Average rating by {data.rating.count} customers</p>
           </div>
           <div>
             <p>
-              <i className="fa fa-inr"></i>
+              <i className="fa fa-inr icon"></i>
               {data.cost}
             </p>
             <p>Average cost for two people</p>

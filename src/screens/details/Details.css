@@ -3,6 +3,10 @@
   background: lightgray;
   display: flex;
 }
+.restaurant-details .icon {
+  font-size: 0.9em;
+  margin-right: 5px;
+}
 
 .restaurant-details .restaurant .image {
   width: 200px;
@@ -15,11 +19,11 @@
   flex-grow: 1;
 }
 
-.restaurant-details .restaurant .details .rating-cost{
+.restaurant-details .restaurant .details .rating-cost {
   display: flex;
 }
 
-.restaurant-details .restaurant .details .rating-cost >div{
+.restaurant-details .restaurant .details .rating-cost > div {
   flex: 0 0 50%;
 }
 
