@@ -58,6 +58,7 @@ export const MOCKS = {
     {
       name: "Pikachu",
       img: "hjghvfcbdv",
+      locality: "Domlur, Bangalore",
       tags: ["abc", "bcd", "cde", "efg"],
       cost: 1000,
       rating: {

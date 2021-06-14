@@ -14,7 +14,7 @@ const RestaurantBase = ({ data }) => {
       <div className="details">
         <div>
           <h2>{data.name}</h2>
-          <p></p>
+          <p>{data.locality}</p>
         </div>
         <div className="tags">{data.tags.join(", ")}</div>
         <div className="rating-cost">
@@ -23,14 +23,16 @@ const RestaurantBase = ({ data }) => {
               <i className="fa fa-star icon"></i>
               {data.rating.average}
             </p>
-            <p>Average rating by {data.rating.count} customers</p>
+            <p className="subtext">
+              Average rating by {data.rating.count} customers
+            </p>
           </div>
           <div>
             <p>
               <i className="fa fa-inr icon"></i>
               {data.cost}
             </p>
-            <p>Average cost for two people</p>
+            <p className="subtext">Average cost for two people</p>
           </div>
         </div>
       </div>

@@ -23,6 +23,14 @@
   display: flex;
 }
 
+.restaurant-details .restaurant .details .rating-cost .subtext {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  width: 200px;
+  line-height: 1.4em;
+  color: gray;
+}
+
 .restaurant-details .restaurant .details .rating-cost > div {
   flex: 0 0 50%;
 }
