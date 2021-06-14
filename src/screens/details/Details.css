@@ -39,3 +39,20 @@
   font-weight: 500;
   font-size: 24px;
 }
+
+.food-item,
+.food-item > div {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.food-item {
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.food-item .MuiIconButton-root {
+  padding: 0;
+}

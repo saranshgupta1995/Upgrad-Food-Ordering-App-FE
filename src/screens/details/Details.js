@@ -2,6 +2,8 @@ import "./Details.css";
 import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import React from "react";
 import Divider from "@material-ui/core/Divider";
+import AddIcon from "@material-ui/icons/Add";
+import IconButton from "@material-ui/core/IconButton";
 import Header from "../../common/header";
 import { MOCKS } from "../../common/js/constants";
 
@@ -44,12 +46,24 @@ const FoodItem = ({ item }) => {
   return (
     <div className="food-item">
       <div className="item-base">
-        <div className="tag"></div>
+        <div className="tag">
+          <i
+            className="fa fa-circle icon"
+            style={item.veg ? { color: "green" } : { color: "red" }}
+          ></i>
+        </div>
         <div className="name">{item.name}</div>
       </div>
       <div className="item-info">
-        <div className="price"></div>
-        <div className="add-to-cart"></div>
+        <div className="price">
+          <i className="fa fa-inr icon"></i>
+          {item.price}
+        </div>
+        <div className="add-to-cart">
+          <IconButton>
+            <AddIcon fontSize='small' />
+          </IconButton>
+        </div>
       </div>
     </div>
   );
