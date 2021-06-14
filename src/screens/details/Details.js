@@ -1,4 +1,5 @@
 import "./Details.css";
+import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import React from "react";
 import Divider from "@material-ui/core/Divider";
 import Header from "../../common/header";
@@ -18,11 +19,17 @@ const RestaurantBase = ({ data }) => {
         <div className="tags">{data.tags.join(", ")}</div>
         <div className="rating-cost">
           <div>
-            <p>{data.rating.average}</p>
+            <p>
+              <i className="fa fa-star"></i>
+              {data.rating.average}
+            </p>
             <p>Average rating by {data.rating.count} customers</p>
           </div>
           <div>
-            <p>{data.cost}</p>
+            <p>
+              <i className="fa fa-inr"></i>
+              {data.cost}
+            </p>
             <p>Average cost for two people</p>
           </div>
         </div>
