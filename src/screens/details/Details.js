@@ -3,6 +3,11 @@ import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import React from "react";
 import Divider from "@material-ui/core/Divider";
 import AddIcon from "@material-ui/icons/Add";
+import Card from "@material-ui/core/Card";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
 import Header from "../../common/header";
 import { MOCKS } from "../../common/js/constants";
@@ -61,7 +66,7 @@ const FoodItem = ({ item }) => {
         </div>
         <div className="add-to-cart">
           <IconButton>
-            <AddIcon fontSize='small' />
+            <AddIcon fontSize="small" />
           </IconButton>
         </div>
       </div>
@@ -85,6 +90,26 @@ const Menu = ({ menu }) => {
   );
 };
 
+const Cart = ({ total, itemCount }) => {
+  return (
+    <Card className="cart">
+      <CardContent>
+        <div>
+          <Badge
+            className="badge"
+            badgeContent={itemCount}
+            color="primary"
+            showZero
+          >
+            <ShoppingCartIcon />
+          </Badge>
+          <span className="cart-header">My Cart</span>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
 class Details extends React.Component {
   render() {
     return (
@@ -92,8 +117,9 @@ class Details extends React.Component {
         <Header></Header>
         <main className="restaurant-details">
           <RestaurantBase data={MOCKS.allRestaurants[0]}></RestaurantBase>
-          <div>
+          <div className="action-area">
             <Menu menu={MOCKS.allRestaurants[0].categories}></Menu>
+            <Cart total={224} itemCount={3}></Cart>
           </div>
         </main>
       </>
