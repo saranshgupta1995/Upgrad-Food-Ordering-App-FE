@@ -1,6 +1,6 @@
 export const LOGIN_MODAL_TABS = [
   {
-    name: "Login",
+    name: "login",
     fields: [
       {
         label: "Contact No",
@@ -18,7 +18,7 @@ export const LOGIN_MODAL_TABS = [
     buttonText: "Login"
   },
   {
-    name: "Signup",
+    name: "signup",
     fields: [
       {
         label: "First Name",

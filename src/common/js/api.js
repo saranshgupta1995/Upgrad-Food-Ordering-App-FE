@@ -31,7 +31,7 @@ export const get = {
 
 export const post = {
   login: data => {
-    return fetch.post(`${BASE}/restaurant/name`);
+    return apiPost("customer/login");
   },
   signup: data => {
     return apiPost(`${BASE}/customer/signup`, data);

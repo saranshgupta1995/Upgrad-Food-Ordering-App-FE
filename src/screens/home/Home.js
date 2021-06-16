@@ -30,8 +30,8 @@ class Home extends React.Component {
         ></Header>
         <div className="restaurant-cards">
           {MOCKS.allRestaurants.map(restaurant => (
-            <div>
-              <Link key={restaurant.name} to={`/restaurant/${restaurant.id}`}>
+            <div key={restaurant.name}>
+              <Link to={`/restaurant/${restaurant.id}`}>
                 <Card className="restaurant-card">
                   <CardActionArea>
                     <CardMedia
@@ -50,7 +50,7 @@ class Home extends React.Component {
                       <br />
                       <br />
                       <Typography
-                        variant="div"
+                        variant="body2"
                         component="p"
                         className="card-footer"
                       >
