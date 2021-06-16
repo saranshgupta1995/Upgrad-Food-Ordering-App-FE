@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
+import { post } from "../js/api";
 
 const TabContainer = function(props) {
   return (
@@ -44,7 +45,7 @@ class Header extends React.Component {
       showErrors: true
     });
 
-    console.log(formFieldsData);
+    post.signup(formFieldsData);
   };
 
   setFieldData = (form, name, value) => {
@@ -53,7 +54,7 @@ class Header extends React.Component {
       return {
         [stateField]: {
           ...prevState[stateField],
-          [`${form}-${name}`]: value
+          [`${name}`]: value
         },
         showErrors: false
       };
@@ -64,7 +65,7 @@ class Header extends React.Component {
     const { showErrors } = this.state;
     const elements = [];
     const fieldValue = (this.state[`${form}FormData`] || {})[
-      `${form}-${data.id}`
+      `${data.id}`
     ];
     switch (data.type) {
       case "text":

@@ -23,25 +23,25 @@ export const LOGIN_MODAL_TABS = [
       {
         label: "First Name",
         type: "text",
-        id: "first-name",
+        id: "first_name",
         required: true
       },
       {
         label: "Last Name",
         type: "text",
-        id: "last-name",
+        id: "last_name",
         required: true
       },
       {
         label: "Email",
         type: "text",
-        id: "email",
+        id: "email_address",
         required: true
       },
       {
         label: "Contact No",
         type: "text",
-        id: "contact"
+        id: "contact_number"
       },
       {
         label: "Password",
