@@ -58,12 +58,61 @@ export const MOCKS = {
     {
       name: "Pikachu",
       img: "hjghvfcbdv",
+      locality: "Domlur, Bangalore",
       tags: ["abc", "bcd", "cde", "efg"],
       cost: 1000,
       rating: {
         count: 2090,
         average: 2.2
-      }
+      },
+      categories: [
+        {
+          items: [
+            {
+              name: "Chicken Wrap",
+              price: 245
+            },
+            {
+              name: "Veg Wrap",
+              price: 245,
+              veg: true
+            },
+            {
+              name: "Double Chicken Wrap",
+              price: 245
+            },
+            {
+              name: "Egg Wrap",
+              price: 245
+            }
+          ],
+          nonVeg: true,
+          name: "Chinese"
+        },
+        {
+          items: [
+            {
+              name: "Chicken Wrap",
+              price: 245
+            },
+            {
+              name: "Veg Wrap",
+              price: 245,
+              veg: true
+            },
+            {
+              name: "Double Chicken Wrap",
+              price: 245
+            },
+            {
+              name: "Egg Wrap",
+              price: 245
+            }
+          ],
+          nonVeg: true,
+          name: "American"
+        }
+      ]
     },
     {
       name: "Pikachu2",
@@ -105,5 +154,8 @@ export const MOCKS = {
         average: 2.7
       }
     }
-  ]
+  ].map(x => {
+    x.id = x.name;
+    return x;
+  })
 };

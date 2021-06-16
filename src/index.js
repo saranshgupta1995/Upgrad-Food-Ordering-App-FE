@@ -5,12 +5,16 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./screens/home/Home";
+import Details from "./screens/details/Details";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/restaurant/:id">
+            <Details></Details>
+          </Route>
           <Route path="/">
             <Home></Home>
           </Route>

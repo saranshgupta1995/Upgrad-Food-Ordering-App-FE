@@ -1,0 +1,91 @@
+.restaurant-details .restaurant {
+  padding: 20px;
+  background: lightgray;
+  display: flex;
+}
+.restaurant-details .icon {
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+
+.restaurant-details .restaurant .image {
+  width: 200px;
+  margin-right: 20px;
+}
+
+.restaurant-details .restaurant .details {
+  padding: 10px;
+  line-height: 1.8em;
+  flex-grow: 1;
+}
+
+.restaurant-details .restaurant .details .rating-cost {
+  display: flex;
+}
+
+.restaurant-details .restaurant .details .rating-cost .subtext {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  width: 200px;
+  line-height: 1.4em;
+  color: gray;
+}
+
+.restaurant-details .restaurant .details .rating-cost > div {
+  flex: 0 0 50%;
+}
+
+.restaurant-details .restaurant h2 {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.food-item,
+.food-item > div {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.food-item {
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.food-item .MuiIconButton-root {
+  padding: 0;
+}
+
+.action-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-area > div {
+  flex: 0 0 45%;
+  height: fit-content;
+}
+
+.cart .MuiCardContent-root {
+  padding: 24px 16px;
+}
+
+.cart .cart-header {
+  font-weight: 700;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.cart .total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin: 16px 0;
+}
+
+.cart .MuiButton-root {
+  width: 100%;
+  text-transform: uppercase;
+}
