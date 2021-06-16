@@ -1,5 +1,4 @@
-const BASE = "https://jsonplaceholder.typicode.com/api";
-// todos/1
+const BASE = "http://localhost:8080/api/";
 
 const DEV_ENV = "dev";
 
