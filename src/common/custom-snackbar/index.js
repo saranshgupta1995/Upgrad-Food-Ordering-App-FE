@@ -3,14 +3,14 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-export default function CustomizedSnackBar({ open, onClose, message }) {
+export default function CustomizedSnackBar({ onClose, message }) {
   return (
     <Snackbar
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "left"
       }}
-      open={open}
+      open={!!message}
       autoHideDuration={3000}
       onClose={onClose}
       message={message}
