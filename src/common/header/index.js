@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
+import { get, post } from "../js/api";
 
 const TabContainer = function(props) {
   return (
@@ -25,6 +26,7 @@ const TabContainer = function(props) {
 class Header extends React.Component {
   constructor() {
     super();
+    get.allPaymentMethods()
     this.state = {
       loginTabValue: 0,
       isLoginModalOpen: false,
@@ -43,8 +45,32 @@ class Header extends React.Component {
     this.setState({
       showErrors: true
     });
+    if (form === "login") {
+      fetch("http://localhost:8080/api/customer/login", {
+        method: "POST",
+        headers: {
+          Authorization:
+            "Basic " +
+            window.btoa(
+              formFieldsData.username + ":" + formFieldsData.password
+            ),
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache"
+        }
+      }).then(resp => {
+        resp.json().then(x => {
+          sessionStorage.setItem("uuid", x.id);
+          sessionStorage.setItem(
+            "access-token",
+            resp.getResponseHeader("access-token")
+          );
+          sessionStorage.setItem("first-name", x.first_name);
+        });
+      });
+      return;
+    }
 
-    console.log(formFieldsData);
+    post[form](formFieldsData);
   };
 
   setFieldData = (form, name, value) => {
@@ -53,7 +79,7 @@ class Header extends React.Component {
       return {
         [stateField]: {
           ...prevState[stateField],
-          [`${form}-${name}`]: value
+          [`${name}`]: value
         },
         showErrors: false
       };
@@ -63,9 +89,7 @@ class Header extends React.Component {
   field = (form, data) => {
     const { showErrors } = this.state;
     const elements = [];
-    const fieldValue = (this.state[`${form}FormData`] || {})[
-      `${form}-${data.id}`
-    ];
+    const fieldValue = (this.state[`${form}FormData`] || {})[`${data.id}`];
     switch (data.type) {
       case "text":
       case "password":

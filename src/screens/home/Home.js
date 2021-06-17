@@ -15,8 +15,13 @@ import {
 import { MOCKS } from "../../common/js/constants";
 
 import Typography from "@material-ui/core/Typography";
+import { get } from "../../common/js/api";
 
 class Home extends React.Component {
+
+  componentDidMount(){
+    get.allRestaurants();
+  }
   render() {
     return (
       <>
@@ -30,8 +35,8 @@ class Home extends React.Component {
         ></Header>
         <div className="restaurant-cards">
           {MOCKS.allRestaurants.map(restaurant => (
-            <div>
-              <Link key={restaurant.name} to={`/restaurant/${restaurant.id}`}>
+            <div key={restaurant.name}>
+              <Link to={`/restaurant/${restaurant.id}`}>
                 <Card className="restaurant-card">
                   <CardActionArea>
                     <CardMedia
@@ -50,7 +55,7 @@ class Home extends React.Component {
                       <br />
                       <br />
                       <Typography
-                        variant="div"
+                        variant="body2"
                         component="p"
                         className="card-footer"
                       >
