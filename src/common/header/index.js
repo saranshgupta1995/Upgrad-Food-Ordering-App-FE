@@ -26,7 +26,6 @@ const TabContainer = function(props) {
 class Header extends React.Component {
   constructor() {
     super();
-    get.allPaymentMethods()
     this.state = {
       loginTabValue: 0,
       isLoginModalOpen: false,
