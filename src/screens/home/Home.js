@@ -100,6 +100,11 @@ class Home extends React.Component {
               </Link>
             </div>
           ))}
+          {!restaurants.length && (
+            <p style={{ padding: "20px" }}>
+              No restaurant with the given name.
+            </p>
+          )}
         </div>
       </>
     );
