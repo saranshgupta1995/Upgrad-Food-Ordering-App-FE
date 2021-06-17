@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8080/api/";
+const BASE = "http://localhost:8080/api";
 
 const DEV_ENV = "dev";
 
@@ -11,7 +11,12 @@ const MOCKS = {};
 if (ENV === DEV_ENV) {
 }
 
-const apiGet = url => fetch(url).then(resStream => resStream.json());
+const apiGet = url => fetch(BASE+url,{
+  headers: {
+    "Content-Type": "application/json",
+    "Cache-Control": "no-cache"
+  }
+}).then(resStream => resStream.json());
 
 const apiPost = (url, data) =>
   fetch(url, {
@@ -26,7 +31,9 @@ export const get = {
         return data;
       })
     );
-  }
+  },
+  allPaymentMethods: () => apiGet('/payment'),
+  allRestaurants: () => apiGet('/restaurant'),
 };
 
 export const post = {

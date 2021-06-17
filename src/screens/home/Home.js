@@ -15,8 +15,13 @@ import {
 import { MOCKS } from "../../common/js/constants";
 
 import Typography from "@material-ui/core/Typography";
+import { get } from "../../common/js/api";
 
 class Home extends React.Component {
+
+  componentDidMount(){
+    get.allRestaurants();
+  }
   render() {
     return (
       <>

@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
-import { post } from "../js/api";
+import { get, post } from "../js/api";
 
 const TabContainer = function(props) {
   return (
@@ -26,6 +26,7 @@ const TabContainer = function(props) {
 class Header extends React.Component {
   constructor() {
     super();
+    get.allPaymentMethods()
     this.state = {
       loginTabValue: 0,
       isLoginModalOpen: false,
