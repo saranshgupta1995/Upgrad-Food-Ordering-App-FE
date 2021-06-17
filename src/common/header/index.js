@@ -119,7 +119,7 @@ class Header extends React.Component {
   };
 
   tabChangeHandler = (event, loginTabValue) => {
-    this.setState({ loginTabValue });
+    this.setState({ loginTabValue, showErrors: false });
   };
 
   render() {
@@ -151,7 +151,15 @@ class Header extends React.Component {
                 {activeLoginTab.fields.map(data =>
                   this.field(activeLoginTab.name, data)
                 )}
-                <Button type="submit" variant="contained" color="primary">
+
+                <br />
+                <br />
+                <Button
+                  type="submit"
+                  className="form-submit-btn"
+                  variant="contained"
+                  color="primary"
+                >
                   Login
                 </Button>
               </form>

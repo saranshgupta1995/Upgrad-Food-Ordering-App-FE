@@ -38,6 +38,7 @@
 
 .user-auth-flows form {
   padding: 10px 30px;
+  text-align: center;
 }
 
 .user-auth-flows .MuiFormControl-root {
