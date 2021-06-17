@@ -38,6 +38,7 @@
 
 .user-auth-flows form {
   padding: 10px 30px;
+  text-align: center;
 }
 
 .user-auth-flows .MuiFormControl-root {
@@ -51,7 +52,7 @@
 
 .restaurant-cards > div {
   flex: 0 0 25%;
-  padding: 10px 20px;
+  padding: 15px 20px;
   box-sizing: border-box;
 }
 
