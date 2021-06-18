@@ -12,33 +12,36 @@ import IconButton from "@material-ui/core/IconButton";
 import Header from "../../common/header";
 import { MOCKS } from "../../common/js/constants";
 import CustomizedSnackBar from "../../common/custom-snackbar";
+import { get } from "../../common/js/api";
 
 const RestaurantBase = ({ data }) => {
   return (
     <div className="restaurant">
       <div className="image">
-        <img src={data.img} alt={data.name} />
+        <img src={data.photo_URL} alt={data.restaurant_name} />
       </div>
       <div className="details">
         <div>
-          <h2>{data.name}</h2>
-          <p>{data.locality}</p>
+          <h2>{data.restaurant_name}</h2>
+          <p>{data.address.locality}</p>
         </div>
-        <div className="tags">{data.tags.join(", ")}</div>
+        <div className="tags">
+          {data.categories.map(x => x.category_name).join(", ")}
+        </div>
         <div className="rating-cost">
           <div>
             <p>
               <i className="fa fa-star icon"></i>
-              {data.rating.average}
+              {data.customer_rating}
             </p>
             <p className="subtext">
-              Average rating by {data.rating.count} customers
+              Average rating by {data.number_customers_rated} customers
             </p>
           </div>
           <div>
             <p>
               <i className="fa fa-inr icon"></i>
-              {data.cost}
+              {data.average_price}
             </p>
             <p className="subtext">Average cost for two people</p>
           </div>
@@ -175,13 +178,21 @@ class Details extends React.Component {
     super();
     this.state = {
       callout: null,
-      addedItems: []
+      addedItems: [],
+      data: null
     };
   }
 
   setSnackBar = text => {
     this.setState({ callout: text });
   };
+
+  componentDidMount() {
+    const { id } = this.props;
+    get.restaurantDetails(id).then(data => {
+      this.setState({ data });
+    });
+  }
 
   addItem = item => {
     const itemCardIndex = this.state.addedItems.findIndex(
@@ -205,25 +216,27 @@ class Details extends React.Component {
   };
 
   render() {
-    const { callout, addedItems } = this.state;
+    const { callout, addedItems, data } = this.state;
     return (
       <>
         <Header></Header>
-        <main className="restaurant-details">
-          <RestaurantBase data={MOCKS.allRestaurants[0]}></RestaurantBase>
-          <div className="action-area">
-            <Menu
-              addItem={this.addItem}
-              menu={MOCKS.allRestaurants[0].categories}
-            ></Menu>
-            <Cart
-              total={224}
-              snackbar={this.setSnackBar}
-              items={addedItems}
-              addItem={this.addItem}
-            ></Cart>
-          </div>
-        </main>
+        {data && (
+          <main className="restaurant-details">
+            <RestaurantBase data={data}></RestaurantBase>
+            <div className="action-area">
+              <Menu
+                addItem={this.addItem}
+                menu={MOCKS.allRestaurants[0].categories}
+              ></Menu>
+              <Cart
+                total={224}
+                snackbar={this.setSnackBar}
+                items={addedItems}
+                addItem={this.addItem}
+              ></Cart>
+            </div>
+          </main>
+        )}
         <CustomizedSnackBar
           message={this.state.callout}
           onClose={() => {
