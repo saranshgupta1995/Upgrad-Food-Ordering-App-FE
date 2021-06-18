@@ -57,7 +57,7 @@ const FoodItem = ({ item, add }) => {
       <div className="item-base">
         <div className="tag">
           <i
-            className="fa fa-circle icon"
+            className="fa fa-circle icon mar-rl"
             style={item.veg ? { color: "green" } : { color: "red" }}
           ></i>
         </div>
@@ -198,6 +198,8 @@ class Details extends React.Component {
     const itemCardIndex = this.state.addedItems.findIndex(
       x => x.name === item.name
     );
+
+    this.setSnackBar("Item added to cart!");
 
     if (!~itemCardIndex) {
       this.setState(prev => {

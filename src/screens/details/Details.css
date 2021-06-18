@@ -53,6 +53,16 @@
   box-sizing: border-box;
 }
 
+.food-category h3 {
+  text-transform: uppercase;
+  color: gray;
+  font-weight: 600;
+}
+
+.restaurant-details .icon.mar-rl {
+  margin-right: 15px;
+}
+
 .food-item {
   width: 100%;
   justify-content: space-between;
@@ -66,6 +76,7 @@
 .action-area {
   display: flex;
   justify-content: space-between;
+  padding: 30px 50px;
 }
 
 .action-area > div {
@@ -94,4 +105,8 @@
 .cart .MuiButton-root {
   width: 100%;
   text-transform: uppercase;
+}
+
+.add-to-cart{
+    margin-left: 50px;
 }
