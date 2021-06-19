@@ -59,10 +59,12 @@ const FoodItem = ({ item, add }) => {
         <div className="tag">
           <i
             className="fa fa-circle icon mar-rl"
-            style={item.veg ? { color: "green" } : { color: "red" }}
+            style={
+              item.item_type === "VEG" ? { color: "green" } : { color: "red" }
+            }
           ></i>
         </div>
-        <div className="name">{item.name}</div>
+        <div className="name">{item.item_name}</div>
       </div>
       <div className="item-info">
         <div className="price">
@@ -90,10 +92,12 @@ const AddedFoodItem = ({ item, add, remove }) => {
         <div className="tag">
           <i
             className="fa fa-stop-circle-o icon mar-rl"
-            style={item.veg ? { color: "green" } : { color: "red" }}
+            style={
+              item.item_type === "VEG" ? { color: "green" } : { color: "red" }
+            }
           ></i>
         </div>
-        <div className="name">{item.name}</div>
+        <div className="name">{item.item_name}</div>
       </div>
       <div className="item-info">
         <div className="add-to-cart">
@@ -126,10 +130,10 @@ const Menu = ({ menu, addItem }) => {
   return (
     <div>
       {menu.map(category => (
-        <div key={category.name} className="food-category">
-          <h3>{category.name}</h3>
+        <div key={category.id} className="food-category">
+          <h3>{category.category_name}</h3>
           <Divider style={{ marginTop: 15, marginBottom: 15 }}></Divider>
-          {category.items.map((item, i) => (
+          {category.item_list.map((item, i) => (
             <FoodItem add={addItem} key={i} item={item}></FoodItem>
           ))}
         </div>
@@ -205,7 +209,7 @@ class Details extends React.Component {
 
   addItem = (item, negative) => {
     const itemCardIndex = this.state.addedItems.findIndex(
-      x => x.name === item.name
+      x => x.id === item.id
     );
 
     if (negative && !~itemCardIndex) {
@@ -241,10 +245,7 @@ class Details extends React.Component {
           <main className="restaurant-details">
             <RestaurantBase data={data}></RestaurantBase>
             <div className="action-area">
-              <Menu
-                addItem={this.addItem}
-                menu={MOCKS.allRestaurants[0].categories}
-              ></Menu>
+              <Menu addItem={this.addItem} menu={data.categories}></Menu>
               <Cart
                 total={224}
                 snackbar={this.setSnackBar}
