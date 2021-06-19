@@ -69,6 +69,10 @@
   padding: 10px 20px;
 }
 
+.food-item.added .name {
+  color: gray;
+}
+
 .food-item .MuiIconButton-root {
   padding: 0;
 }
@@ -107,6 +111,34 @@
   text-transform: uppercase;
 }
 
-.add-to-cart{
-    margin-left: 50px;
+.add-to-cart {
+  margin-left: 50px;
+}
+
+.added .add-to-cart {
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 750px) {
+    .action-area{
+        display: block;
+    }
+
+.add-to-cart {
+    margin-left: 30px;
+  }
+  
+  .added .add-to-cart {
+    margin-right: 30px;
+  }
+
+  .restaurant-details .restaurant{
+      display: block;
+  }
+  .restaurant-details .restaurant .image{
+      width: 100%;
+  }
+  .restaurant-details .restaurant .details{
+      text-align: center;
+  }
 }

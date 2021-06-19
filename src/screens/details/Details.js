@@ -3,6 +3,7 @@ import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import React from "react";
 import Divider from "@material-ui/core/Divider";
 import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 import Card from "@material-ui/core/Card";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import CardContent from "@material-ui/core/CardContent";
@@ -84,11 +85,11 @@ const FoodItem = ({ item, add }) => {
 
 const AddedFoodItem = ({ item, add, remove }) => {
   return (
-    <div className="food-item">
+    <div className="food-item added">
       <div className="item-base">
         <div className="tag">
           <i
-            className="fa fa-circle icon"
+            className="fa fa-stop-circle-o icon mar-rl"
             style={item.veg ? { color: "green" } : { color: "red" }}
           ></i>
         </div>
@@ -96,6 +97,14 @@ const AddedFoodItem = ({ item, add, remove }) => {
       </div>
       <div className="item-info">
         <div className="add-to-cart">
+          <IconButton
+            onClick={() => {
+              add(item, true);
+            }}
+          >
+            <RemoveIcon fontSize="small" />
+          </IconButton>
+          <span>{item.count}</span>
           <IconButton
             onClick={() => {
               add(item);
@@ -194,12 +203,18 @@ class Details extends React.Component {
     });
   }
 
-  addItem = item => {
+  addItem = (item, negative) => {
     const itemCardIndex = this.state.addedItems.findIndex(
       x => x.name === item.name
     );
 
-    this.setSnackBar("Item added to cart!");
+    if (negative && !~itemCardIndex) {
+      return;
+    }
+
+    this.setSnackBar(
+      negative ? "Item quantity decreased by 1!" : "Item added to cart!"
+    );
 
     if (!~itemCardIndex) {
       this.setState(prev => {
@@ -209,9 +224,9 @@ class Details extends React.Component {
       });
     } else {
       this.setState(prev => {
-        prev.addedItems[itemCardIndex].count += 1;
+        prev.addedItems[itemCardIndex].count += negative ? -1 : 1;
         return {
-          addedItems: [...prev.addedItems]
+          addedItems: [...prev.addedItems.filter(item => item.count > 0)]
         };
       });
     }
