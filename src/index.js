@@ -12,9 +12,12 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/restaurant/:id">
-            <Details></Details>
-          </Route>
+          <Route
+            path="/restaurant/:id"
+            render={props => {
+              return <Details id={props.match.params.id}></Details>;
+            }}
+          ></Route>
           <Route path="/">
             <Home></Home>
           </Route>

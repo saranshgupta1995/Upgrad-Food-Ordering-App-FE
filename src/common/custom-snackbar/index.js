@@ -11,7 +11,7 @@ export default function CustomizedSnackBar({ onClose, message }) {
         horizontal: "left"
       }}
       open={!!message}
-      autoHideDuration={3000}
+    //   autoHideDuration={3000}
       onClose={onClose}
       message={message}
       action={

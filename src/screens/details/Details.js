@@ -3,6 +3,7 @@ import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import React from "react";
 import Divider from "@material-ui/core/Divider";
 import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 import Card from "@material-ui/core/Card";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import CardContent from "@material-ui/core/CardContent";
@@ -12,33 +13,36 @@ import IconButton from "@material-ui/core/IconButton";
 import Header from "../../common/header";
 import { MOCKS } from "../../common/js/constants";
 import CustomizedSnackBar from "../../common/custom-snackbar";
+import { get } from "../../common/js/api";
 
 const RestaurantBase = ({ data }) => {
   return (
     <div className="restaurant">
       <div className="image">
-        <img src={data.img} alt={data.name} />
+        <img src={data.photo_URL} alt={data.restaurant_name} />
       </div>
       <div className="details">
         <div>
-          <h2>{data.name}</h2>
-          <p>{data.locality}</p>
+          <h2>{data.restaurant_name}</h2>
+          <p>{data.address.locality}</p>
         </div>
-        <div className="tags">{data.tags.join(", ")}</div>
+        <div className="tags">
+          {data.categories.map(x => x.category_name).join(", ")}
+        </div>
         <div className="rating-cost">
           <div>
             <p>
               <i className="fa fa-star icon"></i>
-              {data.rating.average}
+              {data.customer_rating}
             </p>
             <p className="subtext">
-              Average rating by {data.rating.count} customers
+              Average rating by {data.number_customers_rated} customers
             </p>
           </div>
           <div>
             <p>
               <i className="fa fa-inr icon"></i>
-              {data.cost}
+              {data.average_price}
             </p>
             <p className="subtext">Average cost for two people</p>
           </div>
@@ -54,11 +58,13 @@ const FoodItem = ({ item, add }) => {
       <div className="item-base">
         <div className="tag">
           <i
-            className="fa fa-circle icon"
-            style={item.veg ? { color: "green" } : { color: "red" }}
+            className="fa fa-circle icon mar-rl"
+            style={
+              item.item_type === "VEG" ? { color: "green" } : { color: "red" }
+            }
           ></i>
         </div>
-        <div className="name">{item.name}</div>
+        <div className="name">{item.item_name}</div>
       </div>
       <div className="item-info">
         <div className="price">
@@ -81,18 +87,28 @@ const FoodItem = ({ item, add }) => {
 
 const AddedFoodItem = ({ item, add, remove }) => {
   return (
-    <div className="food-item">
+    <div className="food-item added">
       <div className="item-base">
         <div className="tag">
           <i
-            className="fa fa-circle icon"
-            style={item.veg ? { color: "green" } : { color: "red" }}
+            className="fa fa-stop-circle-o icon mar-rl"
+            style={
+              item.item_type === "VEG" ? { color: "green" } : { color: "red" }
+            }
           ></i>
         </div>
-        <div className="name">{item.name}</div>
+        <div className="name">{item.item_name}</div>
       </div>
       <div className="item-info">
         <div className="add-to-cart">
+          <IconButton
+            onClick={() => {
+              add(item, true);
+            }}
+          >
+            <RemoveIcon fontSize="small" />
+          </IconButton>
+          <span>{item.count}</span>
           <IconButton
             onClick={() => {
               add(item);
@@ -114,10 +130,10 @@ const Menu = ({ menu, addItem }) => {
   return (
     <div>
       {menu.map(category => (
-        <div key={category.name} className="food-category">
-          <h3>{category.name}</h3>
+        <div key={category.id} className="food-category">
+          <h3>{category.category_name}</h3>
           <Divider style={{ marginTop: 15, marginBottom: 15 }}></Divider>
-          {category.items.map((item, i) => (
+          {category.item_list.map((item, i) => (
             <FoodItem add={addItem} key={i} item={item}></FoodItem>
           ))}
         </div>
@@ -175,7 +191,8 @@ class Details extends React.Component {
     super();
     this.state = {
       callout: null,
-      addedItems: []
+      addedItems: [],
+      data: null
     };
   }
 
@@ -183,9 +200,24 @@ class Details extends React.Component {
     this.setState({ callout: text });
   };
 
-  addItem = item => {
+  componentDidMount() {
+    const { id } = this.props;
+    get.restaurantDetails(id).then(data => {
+      this.setState({ data });
+    });
+  }
+
+  addItem = (item, negative) => {
     const itemCardIndex = this.state.addedItems.findIndex(
-      x => x.name === item.name
+      x => x.id === item.id
+    );
+
+    if (negative && !~itemCardIndex) {
+      return;
+    }
+
+    this.setSnackBar(
+      negative ? "Item quantity decreased by 1!" : "Item added to cart!"
     );
 
     if (!~itemCardIndex) {
@@ -196,34 +228,33 @@ class Details extends React.Component {
       });
     } else {
       this.setState(prev => {
-        prev.addedItems[itemCardIndex].count += 1;
+        prev.addedItems[itemCardIndex].count += negative ? -1 : 1;
         return {
-          addedItems: [...prev.addedItems]
+          addedItems: [...prev.addedItems.filter(item => item.count > 0)]
         };
       });
     }
   };
 
   render() {
-    const { callout, addedItems } = this.state;
+    const { callout, addedItems, data } = this.state;
     return (
       <>
         <Header></Header>
-        <main className="restaurant-details">
-          <RestaurantBase data={MOCKS.allRestaurants[0]}></RestaurantBase>
-          <div className="action-area">
-            <Menu
-              addItem={this.addItem}
-              menu={MOCKS.allRestaurants[0].categories}
-            ></Menu>
-            <Cart
-              total={224}
-              snackbar={this.setSnackBar}
-              items={addedItems}
-              addItem={this.addItem}
-            ></Cart>
-          </div>
-        </main>
+        {data && (
+          <main className="restaurant-details">
+            <RestaurantBase data={data}></RestaurantBase>
+            <div className="action-area">
+              <Menu addItem={this.addItem} menu={data.categories}></Menu>
+              <Cart
+                total={224}
+                snackbar={this.setSnackBar}
+                items={addedItems}
+                addItem={this.addItem}
+              ></Cart>
+            </div>
+          </main>
+        )}
         <CustomizedSnackBar
           message={this.state.callout}
           onClose={() => {
