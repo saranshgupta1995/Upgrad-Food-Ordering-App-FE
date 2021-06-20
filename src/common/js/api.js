@@ -2,7 +2,7 @@ const BASE = "http://localhost:8080/api";
 
 const DEV_ENV = "dev";
 
-const ENV = DEV_ENV;
+const ENV = "DEV_ENV";
 
 const GET_CACHE = {};
 
