@@ -11,7 +11,6 @@ import Button from "@material-ui/core/Button";
 import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
 import Header from "../../common/header";
-import { MOCKS } from "../../common/js/constants";
 import CustomizedSnackBar from "../../common/custom-snackbar";
 import { get } from "../../common/js/api";
 
@@ -142,7 +141,7 @@ const Menu = ({ menu, addItem }) => {
   );
 };
 
-const Cart = ({ total, items, snackbar, addItem }) => {
+const Cart = ({ name, items, snackbar, addItem, history }) => {
   return (
     <Card className="cart">
       <CardContent>
@@ -174,6 +173,14 @@ const Cart = ({ total, items, snackbar, addItem }) => {
         <Button
           onClick={() => {
             snackbar("Please login first!");
+            history.push({
+              pathname: "/checkout/",
+              state: {
+                orderItems: items,
+                total: items.reduce((pV, cV) => pV + cV.price * cV.count, 0),
+                restaurantName: name
+              }
+            });
           }}
           className="checkout"
           variant="contained"
@@ -238,6 +245,7 @@ class Details extends React.Component {
 
   render() {
     const { callout, addedItems, data } = this.state;
+    const { history } = this.props;
     return (
       <>
         <Header></Header>
@@ -247,6 +255,8 @@ class Details extends React.Component {
             <div className="action-area">
               <Menu addItem={this.addItem} menu={data.categories}></Menu>
               <Cart
+                name={data.restaurant_name}
+                history={history}
                 total={224}
                 snackbar={this.setSnackBar}
                 items={addedItems}

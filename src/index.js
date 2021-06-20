@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./screens/home/Home";
 import Details from "./screens/details/Details";
+import Checkout from "./screens/checkout/Checkout";
 
 function App() {
   return (
@@ -14,10 +15,15 @@ function App() {
         <Switch>
           <Route
             path="/restaurant/:id"
-            render={props => {
-              return <Details id={props.match.params.id}></Details>;
+            render={({ history, match }) => {
+              return <Details history={history} id={match.params.id}></Details>;
             }}
           ></Route>
+          <Route
+            exact
+            path="/checkout"
+            render={props => <Checkout {...props} baseUrl={""} />}
+          />
           <Route path="/">
             <Home></Home>
           </Route>
