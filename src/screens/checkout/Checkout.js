@@ -78,12 +78,12 @@ class Checkout extends Component {
   }
 
   render() {
-    if (
-      this.props.location.state === undefined ||
-      sessionStorage.getItem("access-token") === null
-    ) {
-      return <Redirect to="/" />;
-    }
+    // if (
+    //   this.props.location.state === undefined ||
+    //   sessionStorage.getItem("access-token") === null
+    // ) {
+    //   return <Redirect to="/" />;
+    // }
     return (
       <Fragment>
         <Header></Header>
